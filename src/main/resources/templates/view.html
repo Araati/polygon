@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование статьи</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+    <div th:each="el : ${blazon}">
+        <input type="text" th:value="${el.owner}" name="owner" placeholder="owner" class="form-control"><br>
+        <input type="text" th:value="${el.descr}" name="description" placeholder="description" class="form-control"><br>
+        <input type="text" th:value="${el.longDesc}" name="long description for blazon" placeholder="long description for blazon" class="form-control"><br>
+        <input type="text" th:value="${el.hash}" name="hash" placeholder="hash" class="form-control"><br>
+        <input type="text" th:value="${el.base64}" name="string_in_base64_which_encode_blazon" placeholder="string_in_base64_which_encode_blazon" class="form-control"><br>
+    </div>
+</div>
+</body>
+</html>
