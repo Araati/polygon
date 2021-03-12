@@ -11,7 +11,7 @@ public class Blazon {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
 
-    private String owner, descr, longDesc, hash, base64;
+    private String owner, descr, hash;
 
     public long getId() {
         return Id;
@@ -37,14 +37,6 @@ public class Blazon {
         this.descr = descr;
     }
 
-    public String getLongDesc() {
-        return longDesc;
-    }
-
-    public void setLongDesc(String longDesc) {
-        this.longDesc = longDesc;
-    }
-
     public String getHash() {
         return hash;
     }
@@ -53,22 +45,12 @@ public class Blazon {
         this.hash = hash;
     }
 
-    public String getBase64() {
-        return base64;
-    }
-
-    public void setBase64(String base64) {
-        this.base64 = base64;
-    }
-
     public Blazon() {
     }
 
-    public Blazon(String owner, String descr, String longDesc, String hash, String base64) {
+    public Blazon(String owner, String descr, String hash) {
         this.owner = owner;
         this.descr = descr;
-        this.longDesc = longDesc;
         this.hash = hash;
-        this.base64 = base64;
     }
 }

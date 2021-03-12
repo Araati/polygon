@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -26,16 +25,9 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public String search(@RequestParam String owner, @RequestParam String descr, @RequestParam String longDesc, @RequestParam String hash, @RequestParam String base64, Model model) {
-        Blazon blazon = blazonRepo.findBlazonByOwnerOrDescrOrLongDescOrHashOrBase64(owner, descr, longDesc, hash, base64);
-        long id = blazon.getId();
-        if(!blazonRepo.existsById(id))   {
-            return "redirect:/";
-        }
-        Optional<Blazon> blazon1 = blazonRepo.findById(id); //rewrite
-        ArrayList<Blazon> res = new ArrayList<>();
-        blazon1.ifPresent(res::add);
-        model.addAttribute("blazon", res);
+    public String search(@RequestParam String owner, @RequestParam String descr, @RequestParam String hash, Model model) {
+        ArrayList<Blazon> blazons = blazonRepo.findBlazonsByOwnerOrDescrContainsOrHash(owner, descr, hash);
+        model.addAttribute("blazons", blazons);
         return "view";
     }
 
@@ -44,8 +36,8 @@ public class MainController {
         return "blazon-add";
     }
     @PostMapping("/add")
-    public String blazonAdd(@RequestParam String owner, @RequestParam String descr, @RequestParam String longDesc, @RequestParam String hash, @RequestParam String base64, Model model) {
-        Blazon blazon = new Blazon(owner, descr, longDesc, hash, base64);
+    public String blazonAdd(@RequestParam String owner, @RequestParam String descr, @RequestParam String hash, Model model) {
+        Blazon blazon = new Blazon(owner, descr, hash);
         blazonRepo.save(blazon);
         return "redirect:/";
     }
