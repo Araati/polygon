@@ -5,11 +5,9 @@ import com.araati.polygon.repo.BlazonRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -35,6 +33,7 @@ public class MainController {
     public String blazonAdd(Model model)   {
         return "blazon-add";
     }
+
     @PostMapping("/add")
     public String blazonAdd(@RequestParam String owner, @RequestParam String descr, @RequestParam String hash, Model model) {
         Blazon blazon = new Blazon(owner, descr, hash);
@@ -42,16 +41,17 @@ public class MainController {
         return "redirect:/";
     }
 
-    @GetMapping("/{id}")
-    public String blazonView(@PathVariable(value = "id") long id, Model model)   {
-        if(!blazonRepo.existsById(id))   {
-            return "redirect:/";
-        }
-        Optional<Blazon> blazon = blazonRepo.findById(id);
-        ArrayList<Blazon> res = new ArrayList<>();
-        blazon.ifPresent(res::add);
-        model.addAttribute("blazon", res);
-        return "view";
+    @RequestMapping(value="/data", method=RequestMethod.POST, headers = {"Content-type=application/json"})
+    @ResponseBody
+    public String saveBlazon(@RequestBody Blazon blazon) {
+        blazonRepo.save(blazon);
+        return "Saved blazon: " + blazon.getDescr();
     }
 
+    @GetMapping("/{id}")
+    public String blazonView(@PathVariable(value = "id") long id, Model model)   {
+        Optional<Blazon> blazon = blazonRepo.findById(id);
+        model.addAttribute("blazons", blazon);
+        return "view";
+    }
 }
