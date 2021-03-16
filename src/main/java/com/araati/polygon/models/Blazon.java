@@ -10,7 +10,6 @@ public class Blazon {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long Id;
-
     private String owner, descr, hash;
 
     public long getId() {
