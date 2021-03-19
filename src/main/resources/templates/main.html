@@ -9,10 +9,14 @@
 
 <div class="container mt-5 mb-5">
     <div>
-        <form action="/list" method="get">
-            <input type="text" name="owner" placeholder="owner" class="form-control"><br>
-            <input type="text" name="descr" placeholder="description" class="form-control"><br>
+        <form action="/blazon" method="get">
+            <input type="text" name="ownerId" placeholder="ownerId" class="form-control"><br>
             <input type="text" name="hash" placeholder="hash" class="form-control"><br>
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+        <br>
+        <form action="/list" method="get">
+            <input type="text" name="description" placeholder="description" class="form-control"><br>
             <button type="submit" class="btn btn-success">Search</button>
         </form>
     </div>

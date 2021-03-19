@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-5 mb-5">
+    <div class="alert alert-info mt-2">
+        <h6><b>Owner Id:</b></h6>
+        <p th:text="${owner.ownerId}"/>
+        <h6><b>Owner Prefix:</b></h6>
+        <p th:text="${owner.ownerPrefix}"/>
+        <h6><b>Description:</b></h6>
+        <p th:text="${blazon.description}"/>
+        <h6><b>Hash:</b></h6>
+        <p th:text="${blazon.hash}"/>
+    </div>
+</div>
+</body>
+</html>
