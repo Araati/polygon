@@ -4,7 +4,11 @@ import com.araati.polygon.entity.BlazonEntity;
 import com.araati.polygon.model.BlazonPayload;
 import com.araati.polygon.repository.BlazonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BlazonService {
@@ -23,5 +27,15 @@ public class BlazonService {
     public BlazonEntity findBlazonByHash(String hash)   {
         BlazonEntity blazon = blazonRepository.findByHash(hash);
         return blazon;
+    }
+
+    public Page<BlazonEntity> paginated(String description, Pageable pageable)  {
+        Page<BlazonEntity> page = blazonRepository.findByDescriptionContains(description, pageable);
+        return page;
+    }
+
+    public List<BlazonEntity> findAll() {
+        List<BlazonEntity> blazons = blazonRepository.findAll();
+        return blazons;
     }
 }

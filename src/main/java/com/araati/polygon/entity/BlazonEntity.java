@@ -7,7 +7,9 @@ public class BlazonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String description, hash;
+    private String description;
+    @Column(unique = true)
+    private String hash;
 
     public long getId() {
         return id;

@@ -6,11 +6,18 @@ import com.araati.polygon.facade.BlazonFacade;
 import com.araati.polygon.model.BlazonPayload;
 import com.araati.polygon.model.OwnerPayload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+@RestController
 public class MainController {
 
     @Autowired
@@ -26,11 +33,22 @@ public class MainController {
         facade.addOwner(payload);
     }
 
-    @GetMapping("/")
-    public String home(Model model) {
-        return "main";
+    @GetMapping("/blazon")
+    List<BlazonEntity> all() {
+        return facade.findAll();
     }
 
+    @GetMapping("/blazon/{id}")
+    BlazonEntity oneBlazon(@PathVariable Long id) {
+        return facade.findBlazonByBlazonId(id);
+    }
+
+    @GetMapping("/blazon/{id}/owners")
+    List<OwnerEntity> owners(@PathVariable Long id) {
+        return facade.findOwnersByBlazonId(id);
+    }
+
+    /*//todo: На самом деле поиск по хешу тоже требует пагинацию
     @GetMapping("/blazon")
     public String findBlazon(@RequestParam(required = false) String ownerId,
                              @RequestParam(required = false) String hash, Model model) {
@@ -54,6 +72,22 @@ public class MainController {
         else
             return "redirect:/";
     }
+
+    @GetMapping("/list")
+    public String findBlazons(@RequestParam String description, Model model,
+                              @PageableDefault Pageable pageable) {
+        Page<BlazonEntity> page = facade.paginated(description, pageable);
+        model.addAttribute("blazonPage", page);
+        model.addAttribute("description", description);
+        int totalPages = page.getTotalPages();
+        if (totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
+                    .boxed()
+                    .collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        return "list-view";
+    }*/
 
     /*@GetMapping("/list")
     public String search(@RequestParam String owner, @RequestParam String descr, @RequestParam String hash,

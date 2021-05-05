@@ -7,7 +7,11 @@ import com.araati.polygon.model.OwnerPayload;
 import com.araati.polygon.service.BlazonService;
 import com.araati.polygon.service.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BlazonFacade {
@@ -35,13 +39,28 @@ public class BlazonFacade {
         BlazonEntity blazon = blazonService.findBlazonByHash(hash);
         return blazon;
     }
-    public OwnerEntity findOwnerByBlazonId(long id)  {
-        OwnerEntity owner = ownerService.findOwnerByBlazonId(id);
-        return owner;
+    public List<OwnerEntity> findOwnersByBlazonId(long id)  {
+        List<OwnerEntity> owners = ownerService.findOwnersByBlazonId(id);
+        return owners;
     }
 
     public OwnerEntity findOwnerByOwnerId(long ownerId) {
         OwnerEntity owner = ownerService.findOwnerByOwnerId(ownerId);
         return owner;
+    }
+
+    public Page<BlazonEntity> paginated(String description, Pageable pageable)  {
+        Page<BlazonEntity> page = blazonService.paginated(description, pageable);
+        return page;
+    }
+
+    public List<BlazonEntity> findAll() {
+        List<BlazonEntity> blazons = blazonService.findAll();
+        return blazons;
+    }
+
+    public BlazonEntity findBlazonByBlazonId(long id)   {
+        BlazonEntity blazon = blazonService.findBlazonByBlazonId(id);
+        return blazon;
     }
 }
