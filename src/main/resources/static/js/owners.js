@@ -1,6 +1,5 @@
 async function getJson(url) {
     let response = await fetch(url); //'http://localhost:8080/blazon/15'
-    console.log(response);
     if (response.ok) {
         return(await response.json());
     } else {
@@ -9,11 +8,8 @@ async function getJson(url) {
 }
 
 function getBlazonId() {
-    let what = decodeURIComponent(location.search.substr(1)).split('&');
-    what.splice(0, 1);
-    let result = what[0];
-    console.log(result);
-    return result;
+    let what = decodeURIComponent(location.search.substr(1)).split('?');
+    return what;
 }
 
 function createOwnerView(ownerId, ownerPrefix) {
@@ -29,17 +25,8 @@ function createOwnerView(ownerId, ownerPrefix) {
     </div>`);
 }
 
-let i = 0;
-do {
-    if(i == 0) {
-        getJson("http://localhost:8080/blazon/" + getBlazonId() + "/owners")
-            .then(obj => i = obj.length);
+getJson("http://localhost:8080/blazon/" + getBlazonId()[0] + "/owners").then(function (result){;
+    for(let i = 0; i < result.length; i++)    {
+        createOwnerView(result[i].ownerId, result[i].ownerPrefix);
     }
-    getJson("http://localhost:8080/blazon/" + getBlazonId() + "/owners")
-        .then(obj => createOwnerView(obj[i].ownerId, obj[i].ownerPrefix));
-    i--;
-    console.log(i);
-} while(i != 0);
-
-/*getJson("http://localhost:8080/blazon/" + getBlazonId() + "/owners")
-    .then(obj => createOwnerView(obj[0].ownerId, obj[0].ownerPrefix));*/
+})

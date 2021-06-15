@@ -49,11 +49,6 @@ public class BlazonFacade {
         return owner;
     }
 
-    public Page<BlazonEntity> paginated(String description, Pageable pageable)  {
-        Page<BlazonEntity> page = blazonService.paginated(description, pageable);
-        return page;
-    }
-
     public List<BlazonEntity> findAll() {
         List<BlazonEntity> blazons = blazonService.findAll();
         return blazons;
@@ -61,6 +56,11 @@ public class BlazonFacade {
 
     public BlazonEntity findBlazonByBlazonId(long id)   {
         BlazonEntity blazon = blazonService.findBlazonByBlazonId(id);
+        return blazon;
+    }
+
+    public List<BlazonEntity> findBlazonByDescription(String description)   {
+        List<BlazonEntity> blazon = blazonService.findBlazonByDescription(description);
         return blazon;
     }
 }

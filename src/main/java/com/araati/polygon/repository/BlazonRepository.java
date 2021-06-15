@@ -10,6 +10,6 @@ import java.util.List;
 public interface BlazonRepository extends CrudRepository<BlazonEntity, Long> {
     BlazonEntity findByHash(String hash);
     BlazonEntity findById(long blazonId);
-    Page<BlazonEntity> findByDescriptionContains(String description, Pageable pageable);
+    List<BlazonEntity> findByDescriptionContains(String description);
     List<BlazonEntity> findAll();
 }

@@ -29,13 +29,13 @@ public class BlazonService {
         return blazon;
     }
 
-    public Page<BlazonEntity> paginated(String description, Pageable pageable)  {
-        Page<BlazonEntity> page = blazonRepository.findByDescriptionContains(description, pageable);
-        return page;
-    }
-
     public List<BlazonEntity> findAll() {
         List<BlazonEntity> blazons = blazonRepository.findAll();
         return blazons;
+    }
+
+    public List<BlazonEntity> findBlazonByDescription(String description)   {
+        List<BlazonEntity> blazon = blazonRepository.findByDescriptionContains(description);
+        return blazon;
     }
 }

@@ -1,21 +1,21 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Result</title>
+    <title>Search</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container mt-5 mb-5">
-    <div class="alert alert-info mt-2">
-        <h6><b>Image</b></h6>
-        <h6><b>Description:</b></h6>
-        <p id="description"></p>
-        <h6><b>Hash:</b></h6>
-        <p id="hash"></p>
-        <h6><b><a href="http://localhost:8080/owners.html" id="owners">Owners</a></b></h6>
+    <div>
+            <input id="ownerId" type="text" placeholder="ownerId" class="form-control"><br>
+            <input id="hash" type="text" placeholder="hash" class="form-control"><br>
+            <button type="submit" class="btn btn-success" onclick="searchByOwnerIdOrHash()">Search</button><br>
+
+            <br><input id="description" type="text" placeholder="description" class="form-control"><br>
+            <button type="submit" class="btn btn-success" onclick="searchByDescription()">Search</button>
     </div>
 </div>
-<script src="js/main.js" charset="utf-8"></script>
+<script src="js/search.js" charset="utf-8"></script>
 </body>
 </html>

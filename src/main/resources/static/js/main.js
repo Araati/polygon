@@ -8,11 +8,9 @@ async function getJson(url) {
     }
 }
 
-window['test'];
-
-getJson('http://localhost:8080/blazon/15')
+getJson('http://localhost:8080/blazon/1')
     .then(obj => document.getElementById('description').innerHTML = obj.description);
-getJson('http://localhost:8080/blazon/15')
+getJson('http://localhost:8080/blazon/1')
     .then(obj => document.getElementById('hash').innerHTML = obj.hash);
-getJson('http://localhost:8080/blazon/15')
+getJson('http://localhost:8080/blazon/1')
     .then(obj => document.getElementById('owners').setAttribute("href", "http://localhost:8080/owners.html?&" + obj.id));
