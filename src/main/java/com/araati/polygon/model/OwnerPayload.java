@@ -1,8 +1,27 @@
 package com.araati.polygon.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class OwnerPayload {
+
+    /*
+    http://localhost:8080/ownerAdd
+    {
+        "hash": "hash",
+        "ownerId": 0,
+        "ownerPrefix": "o"
+    }
+     */
+
     @JsonProperty(value = "hash", required = true)
     private String hash;
 
@@ -11,34 +30,4 @@ public class OwnerPayload {
 
     @JsonProperty(value = "owner_prefix", required = true)
     private String ownerPrefix;
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerPrefix() {
-        return ownerPrefix;
-    }
-
-    public void setOwnerPrefix(String ownerPrefix) {
-        this.ownerPrefix = ownerPrefix;
-    }
-
-    public OwnerPayload(String hash, long ownerId, String ownerPrefix) {
-        this.hash = hash;
-        this.ownerId = ownerId;
-        this.ownerPrefix = ownerPrefix;
-    }
 }

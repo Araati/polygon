@@ -8,6 +8,5 @@ import java.util.List;
 public interface OwnerRepository extends CrudRepository<OwnerEntity, Long> {
 
     OwnerEntity findByOwnerId(long ownerId);
-    OwnerEntity findByBlazonId(long blazonId);
     List<OwnerEntity> findAllByBlazonId(long blazonId);
 }

@@ -1,3 +1,5 @@
+//todo: Legacy код, переписать всё
+
 async function getJson(url) {
     let response = await fetch(url); //'http://localhost:8080/blazon/15'
     if (response.ok) {

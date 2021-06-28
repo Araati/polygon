@@ -1,29 +1,23 @@
 package com.araati.polygon.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class BlazonPayload {
+    /*
+    http://localhost:8080/blazonAdd
+    {
+        "description": "description",
+        "hash": "hash"
+    }
+     */
+
     private String description, hash;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
-    public BlazonPayload(String description, String hash) {
-        this.description = description;
-        this.hash = hash;
-    }
-
-    public BlazonPayload() {
-    }
 }

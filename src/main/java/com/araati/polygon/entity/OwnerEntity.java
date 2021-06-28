@@ -1,6 +1,16 @@
 package com.araati.polygon.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class OwnerEntity {
@@ -10,44 +20,9 @@ public class OwnerEntity {
     private long blazonId, ownerId;
     private String ownerPrefix;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getBlazonId() {
-        return blazonId;
-    }
-
-    public void setBlazonId(long blazonId) {
-        this.blazonId = blazonId;
-    }
-
-    public long getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerPrefix() {
-        return ownerPrefix;
-    }
-
-    public void setOwnerPrefix(String ownerPrefix) {
-        this.ownerPrefix = ownerPrefix;
-    }
-
     public OwnerEntity(long blazonId, long ownerId, String ownerPrefix) {
         this.blazonId = blazonId;
         this.ownerId = ownerId;
         this.ownerPrefix = ownerPrefix;
-    }
-
-    public OwnerEntity() {
     }
 }

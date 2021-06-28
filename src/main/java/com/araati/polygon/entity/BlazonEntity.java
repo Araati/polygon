@@ -1,6 +1,16 @@
 package com.araati.polygon.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 public class BlazonEntity {
@@ -11,35 +21,9 @@ public class BlazonEntity {
     @Column(unique = true)
     private String hash;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getHash() {
-        return hash;
-    }
-
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
-
     public BlazonEntity(String description, String hash) {
         this.description = description;
         this.hash = hash;
     }
 
-    public BlazonEntity() {
-    }
 }
