@@ -5,12 +5,12 @@ function createBlazonView(blazon) {
     <div class="container mt-5 mb-5">
         <div class="alert alert-info mt-2">
             <h6><b>Image</b></h6>
-            <img src="https://www.landsoflords.com/img/herald/FGOpFZuCpWF0bQ__.st.jpg" alt="">
+            <img src="https://www.landsoflords.com/img/herald/$${blazon.hash}.sh.jpg" alt="">
             <h6><b>Description:</b></h6>
             <p>${blazon.description}</p>
             <h6><b>Hash:</b></h6>
             <p>${blazon.hash}</p>
-            <h6><a href="http://localhost:8080/owners.html?${blazon.id}">Owners</a></h6>
+            <h6><a href="http://localhost:8080/owners.html?blazonId=${blazon.id}">Owners</a></h6>
         </div>
     </div>
 `);
@@ -95,11 +95,9 @@ function findBlazons() {
     fetch(request.url, request)
         .then(resp => resp.json())
         .then(function (result) {
-            console.log(result)
             for (let i = 0; i < result.content.length; i++) {
                 createBlazonView(result.content[i]);
             }
-            paginationStart(result.totalPages, result.number)
         });
 }
 
